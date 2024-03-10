@@ -19,13 +19,17 @@ voiceSelect.addEventListener("change", function () {
 })
 
 
+let speaking = false; 
+
 button.addEventListener("click", function () {
+    if (!speaking) {
+        speech.text = document.querySelector("textarea").value;
+        window.speechSynthesis.speak(speech);
+        speaking = true;
 
-    speech.text = document.querySelector("textarea").value
-    window.speechSynthesis.speak(speech);
-
-
-
-
-})
+    } else {
+        window.speechSynthesis.cancel(); 
+        speaking = false;
+    }
+});
 
